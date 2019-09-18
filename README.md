@@ -45,7 +45,9 @@ egrep "(Cisco AP Name|MAC Address)" putty.log | awk 'NR%2{printf "%s ",$0;next;}
 
 Content of `wlc.awk`
 
-zabbix 4.0 可以沿用之前3.4 的模板，但生成文件时需要新增加一组   "<mappings>" 的标签才能导入成功。已在说明文档内补充
+zabbix 4.0 可以沿用之前3.4 的模板，但生成文件时需要额外新增加一组"mappings"的标签。已在下面的 wlc.awk 中进行补充。
+
+Zabbix 4.0 can continue to use the 3.x template, but you need to add a new set of "mappings" tags to "wlc.awk".
 
 ```awk
 BEGIN{
