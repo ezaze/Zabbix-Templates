@@ -1,6 +1,6 @@
 # Zabbix-Templates
 
-All templates has been tested on Zabbix 3.X
+All templates has been tested on Zabbix 4.X
 
 To add my templates into your Zabbix distribution:
 
@@ -45,16 +45,19 @@ egrep "(Cisco AP Name|MAC Address)" putty.log | awk 'NR%2{printf "%s ",$0;next;}
 
 Content of `wlc.awk`
 
+zabbix 4.0 可以沿用之前3.4 的模板，但生成文件时需要新增加一组   "<mappings>" 的标签才能导入成功。已在说明文档内补充
+
 ```awk
 BEGIN{
 FS=","
 print "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
 print "<zabbix_export>"
-print "<version>3.4</version>"
-print "<date>2018-03-09T11:56:38Z</date>"
+print "<version>4.0</version>"
+print "<date>2019-09-18T11:56:38Z</date>"
 print "<value_maps>"
 print "<value_map>"
 print "<name>AP MAC -> NAME</name>"
+print "<mappings>"
 }
 {
   print "<mapping>"
@@ -63,6 +66,7 @@ print "<name>AP MAC -> NAME</name>"
   print "</mapping>"
 }
 END{
+print "</mappings>"
 print "</value_map>"
 print "</value_maps>"
 print "</zabbix_export>"
